@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EnglishReady PH — SHS Teacher Hub</title>
+<meta name="description" content="Official DepEd materials for SHS English teachers — with personal notes, bookmarks, and a lesson planner.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --maroon:#4a0f1c;--maroon-mid:#6b1a2a;--maroon-lt:#8b2535;
+  --gold:#c9a84c;--gold-lt:#f0d98a;
+  --cream:#f9f4ee;--border:#ede0cc;
+  --text:#1a0e08;--muted:#9a8070;--mid:#5c4030;
+  --white:#fff;--green:#0e6e30;--blue:#1a4db5;
+  --radius:14px;
+}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--cream);color:var(--text);line-height:1.6;}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:4px;}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
+
+/* ── OVERLAY BACKDROP ── */
+.overlay{position:fixed;inset:0;background:rgba(26,14,8,.55);z-index:8000;display:none;align-items:center;justify-content:center;}
+.overlay.open{display:flex;}
+
+/* ── MODAL ── */
+.modal{background:var(--white);border-radius:var(--radius);padding:2rem;width:min(420px,92vw);position:relative;box-shadow:0 20px 60px rgba(0,0,0,.25);}
+.modal h2{font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:.3rem;color:var(--maroon);}
+.modal-sub{font-size:.82rem;color:var(--muted);margin-bottom:1.4rem;}
+.modal-close{position:absolute;top:.9rem;right:1rem;background:none;border:none;font-size:1.3rem;cursor:pointer;color:var(--muted);line-height:1;}
+.modal-close:hover{color:var(--maroon);}
+.form-field{margin-bottom:1rem;}
+.form-field label{display:block;font-size:.8rem;font-weight:700;color:var(--mid);margin-bottom:.35rem;letter-spacing:.03em;}
+.form-field input,.form-field textarea,.form-field select{
+  width:100%;padding:.6rem .85rem;border:1.5px solid var(--border);border-radius:9px;
+  font-size:.88rem;font-family:'Plus Jakarta Sans',sans-serif;color:var(--text);
+  background:var(--cream);transition:border-color .18s;
+}
+.form-field input:focus,.form-field textarea:focus{border-color:var(--gold);outline:none;}
+.form-field textarea{resize:vertical;min-height:90px;}
+.btn-primary{
+  width:100%;background:var(--maroon-mid);color:var(--white);border:none;border-radius:50px;
+  padding:.75rem;font-size:.92rem;font-weight:700;cursor:pointer;
+  font-family:'Plus Jakarta Sans',sans-serif;transition:background .18s;
+}
+.btn-primary:hover{background:var(--maroon-lt);}
+.btn-ghost{background:none;border:1.5px solid var(--border);border-radius:50px;padding:.5rem 1.1rem;font-size:.82rem;font-weight:600;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;color:var(--mid);transition:all .18s;}
+.btn-ghost:hover{border-color:var(--maroon-mid);color:var(--maroon-mid);}
+.form-switch{text-align:center;font-size:.82rem;color:var(--muted);margin-top:1rem;}
+.form-switch a{color:var(--maroon-mid);font-weight:700;cursor:pointer;text-decoration:underline;}
+.form-err{font-size:.8rem;color:#c0392b;margin-top:.3rem;display:none;}
+.form-err.show{display:block;}
+
+/* ── COVER ── */
+#cover{position:fixed;inset:0;z-index:9999;background:#2a0810;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;}
+.orb{position:absolute;border-radius:50%;filter:blur(80px);opacity:.4;animation:drift 8s ease-in-out infinite alternate;}
+.orb1{width:500px;height:500px;background:#6b1a2a;top:-120px;left:-100px;animation-delay:0s;}
+.orb2{width:400px;height:400px;background:#c9a84c;bottom:-100px;right:-80px;animation-delay:-3s;}
+.orb3{width:300px;height:300px;background:#8b2535;top:40%;left:55%;animation-delay:-5s;}
+@keyframes drift{from{transform:translate(0,0) scale(1);}to{transform:translate(30px,20px) scale(1.08);}}
+.cover-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:48px 48px;}
+.cover-line{position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#c9a84c,transparent);animation:lineglow 3s ease-in-out infinite;}
+@keyframes lineglow{0%,100%{opacity:.4;}50%{opacity:1;}}
+.cover-inner{position:relative;z-index:2;text-align:center;padding:2rem;max-width:700px;}
+.cover-eyebrow{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:#c9a84c;border:1px solid rgba(201,168,76,.4);border-radius:50px;padding:.35rem 1.2rem;margin-bottom:1.8rem;animation:fadeUp .8s ease both .2s;}
+.cover-title{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,7vw,4.5rem);color:white;line-height:1.1;margin-bottom:1rem;animation:fadeUp .8s ease both .4s;}
+.cover-title span{color:#c9a84c;font-style:italic;}
+.cover-desc{font-size:clamp(.85rem,2vw,1rem);color:rgba(255,255,255,.55);line-height:1.8;max-width:480px;margin:0 auto 2rem;animation:fadeUp .8s ease both .6s;}
+.cover-btns{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;animation:fadeUp .8s ease both .75s;}
+.cover-btn{display:inline-flex;align-items:center;gap:.6rem;background:#c9a84c;color:#1a0e08;border:none;border-radius:50px;padding:.85rem 2.2rem;font-size:.95rem;font-weight:800;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;letter-spacing:.04em;transition:all .22s;box-shadow:0 8px 32px rgba(201,168,76,.35);}
+.cover-btn:hover{background:#f0d98a;transform:translateY(-2px);box-shadow:0 12px 40px rgba(201,168,76,.5);}
+.cover-btn.outline{background:transparent;border:2px solid rgba(255,255,255,.35);color:white;box-shadow:none;}
+.cover-btn.outline:hover{background:rgba(255,255,255,.1);transform:translateY(-2px);}
+.cover-btn svg{width:18px;height:18px;}
+.cover-stats{display:flex;justify-content:center;gap:2.5rem;margin-top:2.8rem;animation:fadeUp .8s ease both 1s;}
+.cover-stat{text-align:center;}
+.cover-stat strong{display:block;font-size:1.6rem;color:white;font-weight:700;line-height:1;}
+.cover-stat span{font-size:.72rem;color:rgba(255,255,255,.45);letter-spacing:.06em;text-transform:uppercase;margin-top:.3rem;display:block;}
+.cover-divider{width:1px;height:40px;background:rgba(255,255,255,.15);align-self:center;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+#cover.hiding{animation:coverOut .6s ease forwards;}
+@keyframes coverOut{to{opacity:0;pointer-events:none;}}
+
+/* ── APP ── */
+#app{display:none;}
+#app.visible{display:block;}
+
+/* ── HEADER ── */
+header{background:var(--maroon);color:white;padding:.85rem 2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.8rem;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.25);}
+.brand{font-family:'Playfair Display',serif;font-size:1.2rem;}
+.brand span{color:var(--gold-lt);}
+.header-right{display:flex;align-items:center;gap:.8rem;flex-wrap:wrap;}
+.search-wrap{position:relative;}
+.search-wrap svg{position:absolute;left:.7rem;top:50%;transform:translateY(-50%);width:15px;height:15px;color:rgba(255,255,255,.5);}
+#searchBox{padding:.5rem .9rem .5rem 2.1rem;border-radius:8px;border:1.5px solid rgba(255,255,255,.2);font-size:.86rem;width:210px;font-family:'Plus Jakarta Sans',sans-serif;background:rgba(255,255,255,.12);color:white;transition:border-color .18s,background .18s;}
+#searchBox::placeholder{color:rgba(255,255,255,.5);}
+#searchBox:focus{border-color:var(--gold);background:rgba(255,255,255,.18);outline:none;}
+.user-pill{display:flex;align-items:center;gap:.5rem;background:rgba(255,255,255,.12);border-radius:50px;padding:.38rem .9rem;font-size:.82rem;cursor:pointer;transition:background .18s;}
+.user-pill:hover{background:rgba(255,255,255,.2);}
+.user-pill span{color:rgba(255,255,255,.85);}
+.user-avatar{width:26px;height:26px;border-radius:50%;background:var(--gold);color:var(--text);font-weight:800;font-size:.72rem;display:flex;align-items:center;justify-content:center;}
+.btn-signout{background:none;border:1.5px solid rgba(255,255,255,.3);border-radius:50px;padding:.38rem .85rem;font-size:.78rem;font-weight:700;color:rgba(255,255,255,.8);cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;transition:all .18s;}
+.btn-signout:hover{background:rgba(255,255,255,.15);color:white;}
+.btn-signin-hdr{background:var(--gold);color:var(--text);border:none;border-radius:50px;padding:.42rem 1.1rem;font-size:.82rem;font-weight:800;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;transition:background .18s;}
+.btn-signin-hdr:hover{background:var(--gold-lt);}
+
+/* ── NAV TABS ── */
+.nav{background:var(--maroon-mid);display:flex;flex-wrap:wrap;gap:.4rem;padding:.65rem 2rem;}
+.nav button{background:none;border:1.5px solid rgba(255,255,255,.3);color:rgba(255,255,255,.85);border-radius:50px;padding:.38rem 1rem;font-size:.8rem;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;transition:all .18s;white-space:nowrap;}
+.nav button:hover{background:rgba(255,255,255,.12);}
+.nav button.active{background:var(--gold);border-color:var(--gold);color:var(--text);font-weight:700;}
+
+/* ── TOOL BAR ── */
+.toolbar{background:white;border-bottom:1px solid var(--border);padding:.6rem 2rem;display:flex;gap:.6rem;flex-wrap:wrap;align-items:center;}
+.tool-btn{display:inline-flex;align-items:center;gap:.4rem;background:var(--cream);border:1.5px solid var(--border);border-radius:50px;padding:.38rem .9rem;font-size:.79rem;font-weight:600;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;color:var(--mid);transition:all .18s;white-space:nowrap;}
+.tool-btn:hover,.tool-btn.active{background:var(--maroon-mid);border-color:var(--maroon-mid);color:white;}
+.tool-btn svg{width:14px;height:14px;}
+.toolbar-sep{width:1px;height:22px;background:var(--border);margin:0 .2rem;}
+
+/* ── CONTAINER ── */
+.container{max-width:1100px;margin:0 auto;padding:2rem;}
+
+/* ── TICKER ── */
+.ticker-wrap{background:white;border:1px solid var(--border);border-radius:12px;padding:.8rem 1.2rem;margin-bottom:2rem;display:flex;align-items:center;gap:1rem;overflow:hidden;}
+.ticker-label{background:var(--maroon-mid);color:white;font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.28rem .8rem;border-radius:6px;white-space:nowrap;flex-shrink:0;}
+.ticker-outer{overflow:hidden;flex:1;}
+.ticker-track{display:flex;gap:3rem;animation:ticker 30s linear infinite;width:max-content;}
+.ticker-track:hover{animation-play-state:paused;}
+.ticker-track span{font-size:.82rem;color:var(--mid);white-space:nowrap;}
+.ticker-track a{color:var(--maroon-mid);font-weight:700;text-decoration:none;}
+.ticker-track a:hover{text-decoration:underline;}
+@keyframes ticker{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+/* ── SECTION HEAD ── */
+.section-head{margin-bottom:1.5rem;}
+h2{font-family:'Playfair Display',serif;font-size:1.25rem;color:var(--text);margin-bottom:.3rem;}
+.sub{font-size:.84rem;color:var(--muted);}
+
+/* ── GRID & CARDS ── */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.2rem;}
+.card{background:white;border:1.5px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:all .2s;display:flex;flex-direction:column;position:relative;}
+.card:hover{transform:translateY(-3px);box-shadow:0 6px 24px rgba(107,26,42,.13);border-color:var(--gold);}
+.card-body{padding:1.2rem;flex:1;}
+.card-meta{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:.7rem;align-items:center;}
+.badge{font-size:.66rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:.2rem .65rem;border-radius:50px;line-height:1.4;}
+.slm{background:#fff0e8;color:#b84500;}
+.cg{background:#e8f0ff;color:#1a4db5;}
+.tg{background:#e8fff0;color:#0e6e30;}
+.do{background:#f3e8ff;color:#6b0d9e;}
+.strat{background:#fffbe8;color:#8a6000;}
+.assess{background:#ffe8f2;color:#8a0038;}
+.grade-badge{font-size:.7rem;background:var(--cream);border:1px solid var(--border);color:var(--muted);padding:.2rem .6rem;border-radius:50px;font-weight:600;}
+.new-badge{font-size:.67rem;background:var(--gold);color:var(--text);padding:.2rem .6rem;border-radius:50px;font-weight:800;}
+.bookmark-badge{font-size:.67rem;background:#fff0e8;color:#b84500;padding:.2rem .6rem;border-radius:50px;font-weight:800;}
+.card-body h3{font-size:.93rem;color:var(--text);margin-bottom:.45rem;line-height:1.4;font-weight:700;}
+.card-body p{font-size:.82rem;color:var(--muted);line-height:1.65;}
+.card-footer{padding:.85rem 1.2rem;background:var(--cream);border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:.5rem;flex-wrap:wrap;}
+.card-footer span{font-size:.72rem;color:var(--muted);}
+.card-footer span strong{color:var(--mid);}
+.card-actions{display:flex;gap:.4rem;align-items:center;}
+.access-btn{background:var(--maroon-mid);color:white;border:none;border-radius:8px;padding:.4rem .9rem;font-size:.78rem;font-weight:700;cursor:pointer;text-decoration:none;font-family:'Plus Jakarta Sans',sans-serif;transition:background .18s;display:inline-flex;align-items:center;gap:.3rem;}
+.access-btn:hover{background:var(--maroon-lt);}
+.icon-btn{background:none;border:1.5px solid var(--border);border-radius:8px;padding:.4rem .5rem;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all .18s;color:var(--muted);}
+.icon-btn:hover{border-color:var(--gold);color:var(--gold);}
+.icon-btn.active{background:var(--gold);border-color:var(--gold);color:var(--text);}
+.icon-btn svg{width:14px;height:14px;}
+
+/* card note preview */
+.note-preview{margin:0 1.2rem 1rem;padding:.6rem .8rem;background:#fffbe8;border-left:3px solid var(--gold);border-radius:0 8px 8px 0;font-size:.78rem;color:var(--mid);line-height:1.5;max-height:60px;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;}
+
+.empty{text-align:center;padding:3rem;color:var(--muted);font-size:.9rem;}
+.empty div{font-size:2rem;margin-bottom:.5rem;}
+
+/* ── NOTES PANEL (drawer) ── */
+.notes-drawer{position:fixed;right:0;top:0;bottom:0;width:min(400px,100vw);background:white;box-shadow:-4px 0 30px rgba(0,0,0,.15);z-index:7000;transform:translateX(100%);transition:transform .3s ease;display:flex;flex-direction:column;}
+.notes-drawer.open{transform:translateX(0);}
+.drawer-header{padding:1.2rem 1.4rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;background:var(--maroon);color:white;}
+.drawer-header h3{font-family:'Playfair Display',serif;font-size:1.1rem;}
+.drawer-close{background:none;border:none;color:rgba(255,255,255,.75);font-size:1.3rem;cursor:pointer;line-height:1;}
+.drawer-close:hover{color:white;}
+.drawer-body{flex:1;overflow-y:auto;padding:1.2rem 1.4rem;}
+.drawer-footer{padding:1rem 1.4rem;border-top:1px solid var(--border);}
+/* My Notes tab */
+.note-card{background:var(--cream);border:1px solid var(--border);border-radius:10px;padding:.9rem 1rem;margin-bottom:.8rem;position:relative;}
+.note-card-title{font-size:.78rem;font-weight:700;color:var(--maroon-mid);margin-bottom:.3rem;}
+.note-card-text{font-size:.82rem;color:var(--mid);line-height:1.55;white-space:pre-wrap;word-break:break-word;}
+.note-card-date{font-size:.68rem;color:var(--muted);margin-top:.5rem;}
+.note-card-del{position:absolute;top:.6rem;right:.7rem;background:none;border:none;color:var(--muted);cursor:pointer;font-size:.9rem;line-height:1;}
+.note-card-del:hover{color:#c0392b;}
+.no-notes{text-align:center;color:var(--muted);font-size:.85rem;padding:2rem 0;}
+/* quick note add in drawer */
+.quick-note-area{border:1.5px solid var(--border);border-radius:10px;padding:.7rem;font-size:.85rem;font-family:'Plus Jakarta Sans',sans-serif;color:var(--text);width:100%;resize:none;min-height:80px;margin-bottom:.6rem;}
+.quick-note-area:focus{border-color:var(--gold);outline:none;}
+
+/* ── LESSON PLANNER ── */
+#plannerModal .modal{width:min(600px,96vw);max-height:90vh;overflow-y:auto;}
+.planner-day{background:var(--cream);border:1px solid var(--border);border-radius:10px;padding:.9rem;margin-bottom:.7rem;}
+.planner-day h4{font-size:.85rem;font-weight:700;color:var(--maroon-mid);margin-bottom:.5rem;}
+.planner-day textarea{width:100%;border:1px solid var(--border);border-radius:8px;padding:.5rem .7rem;font-size:.82rem;font-family:'Plus Jakarta Sans',sans-serif;color:var(--text);background:white;resize:vertical;min-height:60px;}
+.planner-day textarea:focus{border-color:var(--gold);outline:none;}
+.planner-btns{display:flex;gap:.6rem;justify-content:flex-end;margin-top:.8rem;}
+
+/* ── REMINDERS ── */
+.reminder-item{display:flex;align-items:center;gap:.7rem;padding:.6rem 0;border-bottom:1px solid var(--border);}
+.reminder-item:last-child{border-bottom:none;}
+.reminder-cb{width:16px;height:16px;accent-color:var(--maroon-mid);cursor:pointer;flex-shrink:0;}
+.reminder-text{font-size:.84rem;color:var(--mid);flex:1;}
+.reminder-text.done{text-decoration:line-through;color:var(--muted);}
+.reminder-del{background:none;border:none;color:var(--muted);cursor:pointer;font-size:.85rem;}
+.reminder-del:hover{color:#c0392b;}
+
+/* ── TOAST ── */
+.toast{position:fixed;bottom:1.5rem;right:1.5rem;background:var(--maroon);color:white;padding:.7rem 1.3rem;border-radius:50px;font-size:.83rem;font-weight:600;z-index:99999;opacity:0;transform:translateY(10px);transition:all .25s;pointer-events:none;}
+.toast.show{opacity:1;transform:translateY(0);}
+.toast.gold{background:var(--gold);color:var(--text);}
+
+/* ── PROFILE MODAL ── */
+#profileModal .modal{width:min(480px,96vw);max-height:92vh;overflow-y:auto;}
+.profile-avatar-wrap{display:flex;flex-direction:column;align-items:center;gap:.8rem;margin-bottom:1.4rem;}
+.profile-avatar-big{
+  width:90px;height:90px;border-radius:50%;background:var(--gold);color:var(--text);
+  font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;border:3px solid var(--gold);box-shadow:0 4px 18px rgba(201,168,76,.3);
+  position:relative;cursor:pointer;transition:filter .2s;flex-shrink:0;
+}
+.profile-avatar-big img{width:100%;height:100%;object-fit:cover;border-radius:50%;}
+.profile-avatar-big:hover .avatar-overlay{opacity:1;}
+.avatar-overlay{
+  position:absolute;inset:0;border-radius:50%;background:rgba(74,15,28,.65);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  opacity:0;transition:opacity .2s;color:white;font-size:.62rem;font-weight:700;
+  letter-spacing:.04em;text-align:center;gap:.25rem;
+}
+.avatar-overlay svg{width:18px;height:18px;}
+#avatarFileInput{display:none;}
+.profile-name-display{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--maroon);font-weight:700;text-align:center;line-height:1.3;}
+.profile-school-display{font-size:.78rem;color:var(--muted);text-align:center;}
+.profile-divider{border:none;border-top:1px solid var(--border);margin:1rem 0;}
+.profile-section-label{font-size:.72rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.8rem;}
+.profile-stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:.7rem;margin-bottom:1.2rem;}
+.profile-stat-box{background:var(--cream);border:1px solid var(--border);border-radius:10px;padding:.7rem .5rem;text-align:center;}
+.profile-stat-box strong{display:block;font-size:1.3rem;color:var(--maroon);font-weight:700;line-height:1;}
+.profile-stat-box span{font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-top:.2rem;display:block;}
+.profile-save-note{font-size:.75rem;color:var(--muted);text-align:center;margin-top:.8rem;}
+
+/* header avatar — make it clickable when logged in */
+.user-pill{cursor:default;}
+.user-pill.has-photo .user-avatar{background:transparent;overflow:hidden;}
+.user-pill.has-photo .user-avatar img{width:100%;height:100%;object-fit:cover;border-radius:50%;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:640px){
+  header{padding:.7rem 1rem;}
+  #searchBox{width:160px;}
+  .container{padding:1.2rem 1rem;}
+  .nav{padding:.5rem 1rem;}
+  .cover-stats{gap:1.4rem;}
+  .toolbar{padding:.5rem 1rem;}
+}
+</style>
+</head>
+<body>
+
+<!-- ── TOAST ── -->
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+<!-- ══════════════════════ AUTH MODALS ══════════════════════ -->
+<!-- Sign In -->
+<div class="overlay" id="signinOverlay" role="dialog" aria-modal="true" aria-labelledby="signinTitle">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('signinOverlay')" aria-label="Close sign in">✕</button>
+    <h2 id="signinTitle">Welcome back 👋</h2>
+    <p class="modal-sub">Sign in to access your notes, bookmarks, and lesson plans.</p>
+    <div class="form-field">
+      <label for="siEmail">Email address</label>
+      <input type="email" id="siEmail" placeholder="you@example.com" autocomplete="email">
+    </div>
+    <div class="form-field">
+      <label for="siPass">Password</label>
+      <input type="password" id="siPass" placeholder="••••••••" autocomplete="current-password">
+    </div>
+    <p class="form-err" id="siErr">Incorrect email or password. Please try again.</p>
+    <button class="btn-primary" onclick="doSignIn()">Sign In</button>
+    <p class="form-switch">No account yet? <a onclick="switchModal('signinOverlay','signupOverlay')">Create one free</a></p>
+  </div>
+</div>
+
+<!-- Sign Up -->
+<div class="overlay" id="signupOverlay" role="dialog" aria-modal="true" aria-labelledby="signupTitle">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('signupOverlay')" aria-label="Close sign up">✕</button>
+    <h2 id="signupTitle">Create your account</h2>
+    <p class="modal-sub">Free forever. Your notes and bookmarks stay on your device.</p>
+    <div class="form-field">
+      <label for="suName">Full name</label>
+      <input type="text" id="suName" placeholder="e.g. Ma. Cristina Reyes" autocomplete="name">
+    </div>
+    <div class="form-field">
+      <label for="suSchool">School / Division (optional)</label>
+      <input type="text" id="suSchool" placeholder="e.g. JMNHS — DepEd Batangas">
+    </div>
+    <div class="form-field">
+      <label for="suEmail">Email address</label>
+      <input type="email" id="suEmail" placeholder="you@example.com" autocomplete="email">
+    </div>
+    <div class="form-field">
+      <label for="suPass">Password <span style="font-weight:400;color:var(--muted)">(min. 6 chars)</span></label>
+      <input type="password" id="suPass" placeholder="Create a password" autocomplete="new-password">
+    </div>
+    <p class="form-err" id="suErr">Please fill in all required fields.</p>
+    <button class="btn-primary" onclick="doSignUp()">Create Account</button>
+    <p class="form-switch">Already have an account? <a onclick="switchModal('signupOverlay','signinOverlay')">Sign in</a></p>
+  </div>
+</div>
+
+<!-- Note Modal -->
+<div class="overlay" id="noteModalOverlay" role="dialog" aria-modal="true" aria-labelledby="noteModalTitle">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('noteModalOverlay')" aria-label="Close note editor">✕</button>
+    <h2 id="noteModalTitle">📝 Add a Note</h2>
+    <p class="modal-sub" id="noteModalSub">Jot down your thoughts about this resource.</p>
+    <div class="form-field">
+      <label for="noteText">Your note</label>
+      <textarea id="noteText" rows="5" placeholder="e.g. Use this for Q1 Week 3 lesson on speech acts. Good for CLT warm-up..."></textarea>
+    </div>
+    <button class="btn-primary" onclick="saveNote()">Save Note</button>
+  </div>
+</div>
+
+<!-- Lesson Planner Modal -->
+<div class="overlay" id="plannerModal" role="dialog" aria-modal="true" aria-labelledby="plannerTitle">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('plannerModal')" aria-label="Close lesson planner">✕</button>
+    <h2 id="plannerTitle">📅 Weekly Lesson Planner</h2>
+    <p class="modal-sub">Plan your weekly lessons. Auto-saved to your device.</p>
+    <div id="plannerDays"></div>
+    <div class="planner-btns">
+      <button class="btn-ghost" onclick="clearPlanner()">Clear All</button>
+      <button class="btn-primary" style="width:auto;padding:.6rem 1.6rem;" onclick="savePlanner()">Save Plan</button>
+    </div>
+  </div>
+</div>
+
+<!-- Reminders Modal -->
+<div class="overlay" id="remindersModal" role="dialog" aria-modal="true" aria-labelledby="remindersTitle">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('remindersModal')" aria-label="Close reminders">✕</button>
+    <h2 id="remindersTitle">🔔 My Reminders</h2>
+    <p class="modal-sub">Keep track of deadlines, submissions, and tasks.</p>
+    <div class="form-field" style="display:flex;gap:.5rem;">
+      <input type="text" id="reminderInput" placeholder="e.g. Submit Q1 grades by Friday" style="flex:1;">
+      <button class="btn-primary" style="width:auto;padding:.6rem 1rem;white-space:nowrap;" onclick="addReminder()">+ Add</button>
+    </div>
+    <div id="reminderList"></div>
+  </div>
+</div>
+
+<!-- Profile Modal -->
+<div class="overlay" id="profileModal" role="dialog" aria-modal="true" aria-labelledby="profileTitle">
+  <div class="modal" id="profileModalInner">
+    <button class="modal-close" onclick="closeModal('profileModal')" aria-label="Close profile">✕</button>
+    <h2 id="profileTitle">My Profile</h2>
+    <p class="modal-sub">Customize your account and track your activity.</p>
+
+    <!-- Avatar -->
+    <div class="profile-avatar-wrap">
+      <div class="profile-avatar-big" onclick="document.getElementById('avatarFileInput').click()" title="Change profile photo" role="button" aria-label="Change profile photo" tabindex="0" onkeydown="if(event.key==='Enter')document.getElementById('avatarFileInput').click()">
+        <span id="profileAvatarInitials">T</span>
+        <div class="avatar-overlay">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+          Change photo
+        </div>
+      </div>
+      <input type="file" id="avatarFileInput" accept="image/*" onchange="handleAvatarUpload(event)">
+      <div>
+        <div class="profile-name-display" id="profileNameDisplay">Teacher</div>
+        <div class="profile-school-display" id="profileSchoolDisplay">No school set</div>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <p class="profile-section-label">Your Activity</p>
+    <div class="profile-stats-row">
+      <div class="profile-stat-box"><strong id="statBookmarks">0</strong><span>Bookmarks</span></div>
+      <div class="profile-stat-box"><strong id="statNotes">0</strong><span>Notes</span></div>
+      <div class="profile-stat-box"><strong id="statReminders">0</strong><span>Reminders</span></div>
+    </div>
+
+    <hr class="profile-divider">
+
+    <!-- Edit Info -->
+    <p class="profile-section-label">Edit Info</p>
+    <div class="form-field">
+      <label for="profileName">Full Name</label>
+      <input type="text" id="profileName" placeholder="e.g. Ma. Cristina Reyes">
+    </div>
+    <div class="form-field">
+      <label for="profileSchool">School / Division</label>
+      <input type="text" id="profileSchool" placeholder="e.g. JMNHS — DepEd Batangas">
+    </div>
+    <button class="btn-primary" onclick="saveProfile()">Save Changes</button>
+    <p class="profile-save-note">Your info is saved privately on your device.</p>
+  </div>
+</div>
+
+<!-- ══════════════════════ COVER ══════════════════════ -->
+<div id="cover">
+  <div class="orb orb1" aria-hidden="true"></div>
+  <div class="orb orb2" aria-hidden="true"></div>
+  <div class="orb orb3" aria-hidden="true"></div>
+  <div class="cover-grid" aria-hidden="true"></div>
+  <div class="cover-line" aria-hidden="true"></div>
+  <div class="cover-inner">
+    <div class="cover-eyebrow">SHS Teacher Resource Hub · Philippines</div>
+    <h1 class="cover-title">English<span>Ready</span> PH</h1>
+    <p class="cover-desc">All the official DepEd materials you need — with personal notes, bookmarks, lesson planner, and reminders. Everything in one place.</p>
+    <div class="cover-btns">
+      <button class="cover-btn" onclick="enterApp()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        Browse Resources
+      </button>
+      <button class="cover-btn outline" onclick="enterApp();setTimeout(()=>openModal('signupOverlay'),700)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Sign Up Free
+      </button>
+    </div>
+    <div class="cover-stats">
+      <div class="cover-stat"><strong>32</strong><span>Resources</span></div>
+      <div class="cover-divider" aria-hidden="true"></div>
+      <div class="cover-stat"><strong>6</strong><span>Categories</span></div>
+      <div class="cover-divider" aria-hidden="true"></div>
+      <div class="cover-stat"><strong>4</strong><span>Subjects</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════ APP ══════════════════════ -->
+<div id="app">
+  <header>
+    <div class="brand">English<span>Ready</span> PH</div>
+    <div class="header-right">
+      <div class="search-wrap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input type="search" id="searchBox" placeholder="Search resources…" aria-label="Search resources" oninput="render()">
+      </div>
+      <div id="headerUser" style="display:none;" class="user-pill" onclick="openProfileModal()" title="View profile" role="button" tabindex="0" aria-label="Open profile" style="cursor:pointer;" onkeydown="if(event.key==='Enter')openProfileModal()">
+        <div class="user-avatar" id="userAvatar">T</div>
+        <span id="userGreeting">Teacher</span>
+      </div>
+      <button class="btn-signin-hdr" id="btnSigninHdr" onclick="openModal('signinOverlay')">Sign In</button>
+      <button class="btn-signout" id="btnSignout" style="display:none;" onclick="signOut()">Sign Out</button>
+    </div>
+  </header>
+
+  <nav class="nav" aria-label="Filter resources">
+    <button class="active" onclick="setType('ALL',this)">All Resources</button>
+    <button onclick="setType('SLM',this)">📖 SLMs</button>
+    <button onclick="setType('CG',this)">📋 Curriculum Guides</button>
+    <button onclick="setType('TG',this)">👩‍🏫 Teacher's Guides</button>
+    <button onclick="setType('DO',this)">📜 DepEd Orders</button>
+    <button onclick="setType('STRAT',this)">💡 Strategies</button>
+    <button onclick="setType('ASSESS',this)">📊 Assessment</button>
+  </nav>
+
+  <!-- Toolbar -->
+  <div class="toolbar">
+    <button class="tool-btn" id="btnBookmarks" onclick="toggleBookmarksView(this)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+      My Bookmarks
+    </button>
+    <button class="tool-btn" onclick="openNotesDrawer()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+      My Notes
+    </button>
+    <div class="toolbar-sep"></div>
+    <button class="tool-btn" onclick="requireAuth(()=>openModal('plannerModal'))">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      Lesson Planner
+    </button>
+    <button class="tool-btn" onclick="requireAuth(()=>openModal('remindersModal'))">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+      Reminders
+    </button>
+    <button class="tool-btn" onclick="printResources()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+      Print List
+    </button>
+  </div>
+
+  <main class="container">
+    <!-- Ticker -->
+    <div class="ticker-wrap">
+      <div class="ticker-label">What's New</div>
+      <div class="ticker-outer">
+        <div class="ticker-track">
+          <span>📌 <a href="https://www.deped.gov.ph/2023/02/17/deped-order-no-6-s-2023/" target="_blank" rel="noopener">DO No. 6 s. 2023</a> — Strengthened K to 12</span>
+          <span>📌 <a href="https://lrmds.deped.gov.ph" target="_blank" rel="noopener">LRMDS Portal</a> — All official DepEd SLMs</span>
+          <span>📌 MATATAG Curriculum updates now reflected in English CGs</span>
+          <span>📌 <a href="https://www.deped.gov.ph/2015/04/01/do-8-s-2015-policy-guidelines-on-classroom-assessment-for-the-k-to-12-basic-education-program/" target="_blank" rel="noopener">DO No. 8 s. 2015</a> — Classroom Assessment Policy</span>
+          <span>📌 <a href="https://www.deped.gov.ph" target="_blank" rel="noopener">DO No. 21 s. 2019</a> — K to 12 Policy Guidelines</span>
+          <span>📌 <a href="https://www.deped.gov.ph/2023/02/17/deped-order-no-6-s-2023/" target="_blank" rel="noopener">DO No. 6 s. 2023</a> — Strengthened K to 12</span>
+          <span>📌 <a href="https://lrmds.deped.gov.ph" target="_blank" rel="noopener">LRMDS Portal</a> — All official DepEd SLMs</span>
+          <span>📌 MATATAG Curriculum updates now reflected in English CGs</span>
+          <span>📌 <a href="https://www.deped.gov.ph/2015/04/01/do-8-s-2015-policy-guidelines-on-classroom-assessment-for-the-k-to-12-basic-education-program/" target="_blank" rel="noopener">DO No. 8 s. 2015</a> — Classroom Assessment Policy</span>
+          <span>📌 <a href="https://www.deped.gov.ph" target="_blank" rel="noopener">DO No. 21 s. 2019</a> — K to 12 Policy Guidelines</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-head">
+      <h2 id="sectionTitle">All Resources</h2>
+      <p class="sub" id="sectionSub">All materials are from official DepEd sources. Click "Access" to open the official link.</p>
+    </div>
+
+    <div class="grid" id="grid"></div>
+    <div class="empty" id="empty" style="display:none;"><div>🔍</div>No resources found. Try a different keyword or filter.</div>
+  </main>
+
+  <!-- Notes Drawer -->
+  <aside class="notes-drawer" id="notesDrawer" aria-label="My Notes panel">
+    <div class="drawer-header">
+      <h3>📝 My Notes</h3>
+      <button class="drawer-close" onclick="closeNotesDrawer()" aria-label="Close notes panel">✕</button>
+    </div>
+    <div class="drawer-body" id="drawerBody"></div>
+    <div class="drawer-footer">
+      <p style="font-size:.75rem;color:var(--muted);text-align:center;">Notes are saved privately on your device.</p>
+    </div>
+  </aside>
+</div>
+
+<script>
+/* ═══════════════ DATA ═══════════════ */
+const DATA = [
+  {id:'r01',type:'SLM',grade:'Grade 11',subj:'Reading and Writing Skills',title:'SLM — Reading & Writing: Quarter 1',desc:'Covers various text types, reading comprehension strategies, and note-taking.',src:'DepEd LRMDS',url:'https://lrmds.deped.gov.ph',isNew:false},
+  {id:'r02',type:'SLM',grade:'Grade 11',subj:'Reading and Writing Skills',title:'SLM — Reading & Writing: Quarter 2',desc:'Covers research writing, academic text production, and correct citations.',src:'DepEd LRMDS',url:'https://lrmds.deped.gov.ph',isNew:false},
+  {id:'r03',type:'SLM',grade:'Grade 11',subj:'Oral Communication',title:'SLM — Oral Communication: Quarter 1',desc:'Covers nature and elements of communication, speech acts, and oral models.',src:'DepEd LRMDS',url:'https://lrmds.deped.gov.ph',isNew:false},
+  {id:'r04',type:'SLM',grade:'Grade 11',subj:'Oral Communication',title:'SLM — Oral Communication: Quarter 2',desc:'Covers informative speech, persuasive speech, and effective oral delivery.',src:'DepEd LRMDS',url:'https://lrmds.deped.gov.ph',isNew:false},
+  {id:'r05',type:'SLM',grade:'Grade 12',subj:'21st Century Literature',title:'SLM — 21st Century Literature: Quarter 1',desc:'Covers Philippine literature from different regions in a 21st-century context.',src:'DepEd LRMDS',url:'https://lrmds.deped.gov.ph',isNew:false},
+  {id:'r06',type:'SLM',grade:'Grade 12',subj:'21st Century Literature',title:'SLM — 21st Century Literature: Quarter 2',desc:'Covers world literature, comparative analysis, and intertextuality.',src:'DepEd LRMDS',url:'https://lrmds.deped.gov.ph',isNew:false},
+  {id:'r07',type:'SLM',grade:'Grade 12',subj:'EAPP',title:'SLM — EAPP: Quarter 1',desc:'Covers reading academic texts, summarizing, and paraphrasing.',src:'DepEd LRMDS',url:'https://lrmds.deped.gov.ph',isNew:false},
+  {id:'r08',type:'SLM',grade:'Grade 12',subj:'EAPP',title:'SLM — EAPP: Quarter 2',desc:'Covers writing concept papers, position papers, and professional documents.',src:'DepEd LRMDS',url:'https://lrmds.deped.gov.ph',isNew:false},
+  {id:'r09',type:'CG',grade:'Grade 11',subj:'Reading and Writing Skills',title:'Curriculum Guide — Reading and Writing Skills',desc:'Official CG with content standards, performance standards, and all competencies.',src:'DepEd Official',url:'https://www.deped.gov.ph/alternative-learning-system/resources/downloads/k-to-12-curriculum-guides/',isNew:false},
+  {id:'r10',type:'CG',grade:'Grade 11',subj:'Oral Communication',title:'Curriculum Guide — Oral Communication in Context',desc:'Full competency list, content standards, and performance standards for Grade 11.',src:'DepEd Official',url:'https://www.deped.gov.ph/alternative-learning-system/resources/downloads/k-to-12-curriculum-guides/',isNew:false},
+  {id:'r11',type:'CG',grade:'Grade 12',subj:'21st Century Literature',title:'Curriculum Guide — 21st Century Literature',desc:'Philippine and world literature competencies, content areas, and performance tasks.',src:'DepEd Official',url:'https://www.deped.gov.ph/alternative-learning-system/resources/downloads/k-to-12-curriculum-guides/',isNew:false},
+  {id:'r12',type:'CG',grade:'Grade 12',subj:'EAPP',title:'Curriculum Guide — EAPP',desc:'Full CG for EAPP including all MELCs and competency codes.',src:'DepEd Official',url:'https://www.deped.gov.ph/alternative-learning-system/resources/downloads/k-to-12-curriculum-guides/',isNew:true},
+  {id:'r13',type:'TG',grade:'Grade 11',subj:'Reading and Writing Skills',title:"Teacher's Guide — Reading and Writing Skills",desc:'Sample lesson outlines, classroom activities, and competency mapping for all quarters.',src:'DepEd LRMDS',url:'https://lrmds.deped.gov.ph',isNew:false},
+  {id:'r14',type:'TG',grade:'Grade 11',subj:'Oral Communication',title:"Teacher's Guide — Oral Communication in Context",desc:'Activity suggestions, speech rubrics, and instructional notes aligned to the official CG.',src:'DepEd LRMDS',url:'https://lrmds.deped.gov.ph',isNew:false},
+  {id:'r15',type:'TG',grade:'Grade 12',subj:'21st Century Literature',title:"Teacher's Guide — 21st Century Literature",desc:'Literature notes, discussion guides, and performance task suggestions.',src:'DepEd LRMDS',url:'https://lrmds.deped.gov.ph',isNew:false},
+  {id:'r16',type:'TG',grade:'Grade 12',subj:'EAPP',title:"Teacher's Guide — EAPP",desc:'Academic writing scaffolds, sample activities, and assessment guidelines.',src:'DepEd LRMDS',url:'https://lrmds.deped.gov.ph',isNew:true},
+  {id:'r17',type:'DO',grade:'All Grades',subj:'Assessment',title:'DO No. 8 s. 2015 — Classroom Assessment Policy',desc:'Primary DepEd policy on formative and summative assessment, grading, and reporting.',src:'DepEd Official',url:'https://www.deped.gov.ph/2015/04/01/do-8-s-2015-policy-guidelines-on-classroom-assessment-for-the-k-to-12-basic-education-program/',isNew:false},
+  {id:'r18',type:'DO',grade:'All Grades',subj:'Curriculum',title:'DO No. 21 s. 2019 — K to 12 Policy Guidelines',desc:'Updated policy on the full implementation of the K to 12 Basic Education Program.',src:'DepEd Official',url:'https://www.deped.gov.ph',isNew:false},
+  {id:'r19',type:'DO',grade:'All Grades',subj:'Curriculum Reform',title:'DO No. 6 s. 2023 — Strengthened K to 12',desc:'Covers strengthened K to 12 implementation with updates relevant to SHS.',src:'DepEd Official',url:'https://www.deped.gov.ph/2023/02/17/deped-order-no-6-s-2023/',isNew:true},
+  {id:'r20',type:'DO',grade:'All Grades',subj:'MATATAG Reform',title:'MATATAG Curriculum Issuance 2023',desc:'Most recent DepEd curriculum reform affecting revisions to K to 12 including English.',src:'DepEd Official',url:'https://www.deped.gov.ph',isNew:true},
+  {id:'r21',type:'STRAT',grade:'All Grades',subj:'Pedagogy',title:'Competency-Based Teaching in SHS English',desc:'DepEd-recommended approach focusing on measurable competencies as defined in the CG.',src:'DepEd K to 12 Primer',url:'https://www.deped.gov.ph',isNew:false},
+  {id:'r22',type:'STRAT',grade:'Grade 11–12',subj:'Reading',title:'Before-During-After (BDA) Reading Framework',desc:'Embedded in all official DepEd SLMs and TGs. Activates prior knowledge and deepens comprehension.',src:'DepEd SLMs',url:'https://lrmds.deped.gov.ph',isNew:false},
+  {id:'r23',type:'STRAT',grade:'Grade 11–12',subj:'Writing',title:'Process Writing Approach',desc:'DepEd endorses prewriting, drafting, revising, editing, and publishing in all English writing subjects.',src:'DepEd TGs',url:'https://lrmds.deped.gov.ph',isNew:false},
+  {id:'r24',type:'STRAT',grade:'Grade 11',subj:'Oral Communication',title:'Communicative Language Teaching (CLT)',desc:'Primary instructional approach for Oral Communication in Context as referenced in the official CG.',src:'DepEd CG',url:'https://www.deped.gov.ph/alternative-learning-system/resources/downloads/k-to-12-curriculum-guides/',isNew:false},
+  {id:'r25',type:'STRAT',grade:'Grade 12',subj:'Literature',title:'Reader-Response Theory in Literature Teaching',desc:'Referenced in the 21st Century Literature TG. Students connect personal experience to literary texts.',src:'DepEd TG — Literature',url:'https://lrmds.deped.gov.ph',isNew:false},
+  {id:'r26',type:'STRAT',grade:'Grade 12',subj:'EAPP',title:'Genre-Based Approach for Academic Writing',desc:'DepEd EAPP CG and TG recommend genre-based instruction for producing academic text types.',src:'DepEd TG — EAPP',url:'https://lrmds.deped.gov.ph',isNew:true},
+  {id:'r27',type:'ASSESS',grade:'All Grades',subj:'Assessment Policy',title:'Formative vs. Summative Assessment (DO 8 s. 2015)',desc:'Explains formative and summative assessment and how both are computed in the grading system.',src:'DO No. 8 s. 2015',url:'https://www.deped.gov.ph/2015/04/01/do-8-s-2015-policy-guidelines-on-classroom-assessment-for-the-k-to-12-basic-education-program/',isNew:false},
+  {id:'r28',type:'ASSESS',grade:'SHS',subj:'Performance Task',title:'Performance Task Design Guidelines for SHS',desc:'SHS weights: Written Work 25%, Performance Tasks 50%, Quarterly Assessment 25%.',src:'DO No. 8 s. 2015',url:'https://www.deped.gov.ph/2015/04/01/do-8-s-2015-policy-guidelines-on-classroom-assessment-for-the-k-to-12-basic-education-program/',isNew:false},
+  {id:'r29',type:'ASSESS',grade:'Grade 11–12',subj:'Portfolio',title:'Portfolio Assessment Reference — DepEd',desc:'DepEd references portfolio assessment for tracking student competency growth over time.',src:'DepEd K to 12 Framework',url:'https://www.deped.gov.ph',isNew:false},
+  {id:'r30',type:'ASSESS',grade:'Grade 11–12',subj:'Rubrics',title:'Rubric-Based Assessment for Oral and Written Tasks',desc:'Sample rubrics for oral presentations, essays, and research papers from DepEd TGs.',src:'DepEd TGs',url:'https://lrmds.deped.gov.ph',isNew:false},
+  {id:'r31',type:'ASSESS',grade:'Grade 12',subj:'EAPP',title:'EAPP Performance Task Rubric — Academic Writing',desc:'Official DepEd rubric for EAPP writing tasks. Criteria: content, organization, language use.',src:'DepEd TG — EAPP',url:'https://lrmds.deped.gov.ph',isNew:true},
+  {id:'r32',type:'ASSESS',grade:'Grade 11',subj:'Oral Communication',title:'Oral Communication Performance Task Rubric',desc:'DepEd rubric for evaluating speeches. Covers delivery, content, and audience awareness.',src:'DepEd TG — Oral Comm',url:'https://lrmds.deped.gov.ph',isNew:false},
+];
+
+const TYPE_LABEL={SLM:'SLM',CG:'Curriculum Guide',TG:"Teacher's Guide",DO:'DepEd Order',STRAT:'Strategy',ASSESS:'Assessment'};
+const TYPE_CLASS={SLM:'slm',CG:'cg',TG:'tg',DO:'do',STRAT:'strat',ASSESS:'assess'};
+const TITLE_MAP={ALL:'All Resources',SLM:'Self-Learning Modules',CG:'Curriculum Guides',TG:"Teacher's Guides",DO:'DepEd Orders',STRAT:'Teaching Strategies',ASSESS:'Assessment Tools'};
+
+let curType='ALL', showBookmarks=false, currentNoteId=null;
+
+/* ═══════════════ STORAGE HELPERS ═══════════════ */
+function ls(key,def=null){try{const v=localStorage.getItem(key);return v!==null?JSON.parse(v):def;}catch{return def;}}
+function lss(key,val){try{localStorage.setItem(key,JSON.stringify(val));}catch{}}
+
+/* ═══════════════ AUTH (localStorage-based) ═══════════════ */
+let currentUser=ls('erph_session',null);
+
+function getUsers(){return ls('erph_users',{});}
+function saveUsers(u){lss('erph_users',u);}
+
+function doSignUp(){
+  const name=document.getElementById('suName').value.trim();
+  const email=document.getElementById('suEmail').value.trim().toLowerCase();
+  const pass=document.getElementById('suPass').value;
+  const school=document.getElementById('suSchool').value.trim();
+  const err=document.getElementById('suErr');
+  if(!name||!email||pass.length<6){err.classList.add('show');return;}
+  err.classList.remove('show');
+  const users=getUsers();
+  if(users[email]){err.textContent='An account with this email already exists.';err.classList.add('show');return;}
+  users[email]={name,email,pass,school};
+  saveUsers(users);
+  currentUser={name,email,school};
+  lss('erph_session',currentUser);
+  closeModal('signupOverlay');
+  updateAuthUI();
+  showToast('🎉 Welcome, '+name.split(' ')[0]+'!','gold');
+  render();
+}
+
+function doSignIn(){
+  const email=document.getElementById('siEmail').value.trim().toLowerCase();
+  const pass=document.getElementById('siPass').value;
+  const err=document.getElementById('siErr');
+  const users=getUsers();
+  if(!users[email]||users[email].pass!==pass){err.classList.add('show');return;}
+  err.classList.remove('show');
+  currentUser={name:users[email].name,email,school:users[email].school};
+  lss('erph_session',currentUser);
+  closeModal('signinOverlay');
+  updateAuthUI();
+  showToast('Welcome back, '+currentUser.name.split(' ')[0]+'! 👋');
+  render();
+}
+
+function signOut(){
+  currentUser=null;
+  lss('erph_session',null);
+  updateAuthUI();
+  showToast('Signed out. See you soon!');
+  render();
+}
+
+function updateAuthUI(){
+  const loggedIn=!!currentUser;
+  document.getElementById('headerUser').style.display=loggedIn?'flex':'none';
+  document.getElementById('btnSigninHdr').style.display=loggedIn?'none':'inline-block';
+  document.getElementById('btnSignout').style.display=loggedIn?'inline-block':'none';
+  if(loggedIn){
+    const initials=currentUser.name.split(' ').map(w=>w[0]).slice(0,2).join('').toUpperCase();
+    document.getElementById('userAvatar').textContent=initials;
+    const first=currentUser.name.split(' ')[0];
+    document.getElementById('userGreeting').textContent=first;
+  }
+}
+
+function requireAuth(cb){
+  if(!currentUser){showToast('Please sign in to use this feature ✏️');openModal('signinOverlay');return;}
+  cb();
+}
+
+/* ═══════════════ MODALS ═══════════════ */
+function openModal(id){document.getElementById(id).classList.add('open');}
+function closeModal(id){document.getElementById(id).classList.remove('open');}
+function switchModal(from,to){closeModal(from);openModal(to);}
+
+// close on backdrop click
+document.querySelectorAll('.overlay').forEach(o=>{
+  o.addEventListener('click',e=>{if(e.target===o)closeModal(o.id);});
+});
+
+/* ═══════════════ COVER → APP ═══════════════ */
+function enterApp(){
+  const cover=document.getElementById('cover');
+  cover.classList.add('hiding');
+  setTimeout(()=>{
+    cover.style.display='none';
+    document.getElementById('app').classList.add('visible');
+    updateAuthUI();
+    render();
+    loadPlanner();
+    loadReminders();
+  },600);
+}
+
+/* ═══════════════ FILTER + RENDER ═══════════════ */
+function setType(t,btn){
+  curType=t;showBookmarks=false;
+  document.getElementById('btnBookmarks').classList.remove('active');
+  document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  render();
+}
+
+function toggleBookmarksView(btn){
+  showBookmarks=!showBookmarks;
+  btn.classList.toggle('active',showBookmarks);
+  render();
+}
+
+function getBookmarks(){return ls('erph_bookmarks_'+(currentUser?currentUser.email:'guest'),[]);}
+function saveBookmarks(b){lss('erph_bookmarks_'+(currentUser?currentUser.email:'guest'),b);}
+function toggleBookmark(id){
+  let bm=getBookmarks();
+  if(bm.includes(id))bm=bm.filter(x=>x!==id);
+  else bm.push(id);
+  saveBookmarks(bm);
+  render();
+}
+
+function getNotes(){return ls('erph_notes_'+(currentUser?currentUser.email:'guest'),{});}
+function saveNotes(n){lss('erph_notes_'+(currentUser?currentUser.email:'guest'),n);}
+
+function render(){
+  const q=document.getElementById('searchBox').value.toLowerCase();
+  const bm=getBookmarks();
+  const notes=getNotes();
+  let filtered=DATA.filter(r=>{
+    const matchType=curType==='ALL'||r.type===curType;
+    const matchQ=!q||[r.title,r.desc,r.subj,r.grade].join(' ').toLowerCase().includes(q);
+    const matchBm=!showBookmarks||bm.includes(r.id);
+    return matchType&&matchQ&&matchBm;
+  });
+  document.getElementById('sectionTitle').textContent=showBookmarks?'My Bookmarks':(TITLE_MAP[curType]||'All Resources');
+  document.getElementById('sectionSub').textContent=showBookmarks?'Resources you\'ve saved for quick access.':'All materials are from official DepEd sources. Click "Access" to open the official link.';
+  const grid=document.getElementById('grid');
+  const empty=document.getElementById('empty');
+  if(!filtered.length){grid.innerHTML='';empty.style.display='block';empty.innerHTML='<div>🔍</div>'+(showBookmarks?'No bookmarks yet. Click the bookmark icon on any resource to save it.':'No resources found. Try a different keyword or filter.');return;}
+  empty.style.display='none';
+  grid.innerHTML=filtered.map(r=>{
+    const isBookmarked=bm.includes(r.id);
+    const note=notes[r.id];
+    const notePreview=note?`<div class="note-preview">📝 ${note.text}</div>`:'';
+    return`<div class="card">
+      <div class="card-body">
+        <div class="card-meta">
+          <span class="badge ${TYPE_CLASS[r.type]}">${TYPE_LABEL[r.type]}</span>
+          <span class="grade-badge">${r.grade}</span>
+          ${r.isNew?'<span class="new-badge">NEW</span>':''}
+          ${isBookmarked?'<span class="bookmark-badge">🔖 Saved</span>':''}
+        </div>
+        <h3>${r.title}</h3>
+        <p>${r.desc}</p>
+      </div>
+      ${notePreview}
+      <div class="card-footer">
+        <span>Source: <strong>${r.src}</strong></span>
+        <div class="card-actions">
+          <button class="icon-btn${isBookmarked?' active':''}" onclick="toggleBookmark('${r.id}')" title="${isBookmarked?'Remove bookmark':'Bookmark this resource'}" aria-label="${isBookmarked?'Remove bookmark for':'Bookmark'} ${r.title}">
+            <svg viewBox="0 0 24 24" fill="${isBookmarked?'currentColor':'none'}" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+          </button>
+          <button class="icon-btn${note?' active':''}" onclick="openNoteModal('${r.id}','${r.title.replace(/'/g,"\\'")}',this)" title="${note?'Edit note':'Add a note'}" aria-label="${note?'Edit note for':'Add note for'} ${r.title}">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+          </button>
+          <a class="access-btn" href="${r.url}" target="_blank" rel="noopener noreferrer" aria-label="Access ${r.title} — opens in new tab">Access ↗</a>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+/* ═══════════════ NOTES ═══════════════ */
+function openNoteModal(id,title){
+  currentNoteId=id;
+  document.getElementById('noteModalTitle').textContent='📝 '+(getNotes()[id]?'Edit':'Add')+' Note';
+  document.getElementById('noteModalSub').textContent=title;
+  const existing=getNotes()[id];
+  document.getElementById('noteText').value=existing?existing.text:'';
+  openModal('noteModalOverlay');
+  setTimeout(()=>document.getElementById('noteText').focus(),100);
+}
+
+function saveNote(){
+  if(!currentNoteId)return;
+  const text=document.getElementById('noteText').value.trim();
+  const notes=getNotes();
+  if(text){
+    notes[currentNoteId]={text,date:new Date().toLocaleDateString('en-PH',{month:'short',day:'numeric',year:'numeric'})};
+  } else {
+    delete notes[currentNoteId];
+  }
+  saveNotes(notes);
+  closeModal('noteModalOverlay');
+  showToast(text?'Note saved! ✏️':'Note removed.');
+  render();
+  refreshDrawer();
+}
+
+/* Notes Drawer */
+function openNotesDrawer(){
+  refreshDrawer();
+  document.getElementById('notesDrawer').classList.add('open');
+}
+function closeNotesDrawer(){document.getElementById('notesDrawer').classList.remove('open');}
+
+function refreshDrawer(){
+  const notes=getNotes();
+  const keys=Object.keys(notes);
+  const body=document.getElementById('drawerBody');
+  if(!keys.length){body.innerHTML='<div class="no-notes">No notes yet.<br>Click the ✏️ icon on any resource card to add one.</div>';return;}
+  body.innerHTML=keys.map(id=>{
+    const r=DATA.find(x=>x.id===id);
+    const n=notes[id];
+    if(!r||!n)return'';
+    return`<div class="note-card">
+      <div class="note-card-title">${r.title}</div>
+      <div class="note-card-text">${n.text}</div>
+      <div class="note-card-date">${n.date}</div>
+      <button class="note-card-del" onclick="deleteNote('${id}')" aria-label="Delete note for ${r.title}">🗑</button>
+    </div>`;
+  }).join('');
+}
+
+function deleteNote(id){
+  const notes=getNotes();
+  delete notes[id];
+  saveNotes(notes);
+  showToast('Note deleted.');
+  render();
+  refreshDrawer();
+}
+
+/* ═══════════════ LESSON PLANNER ═══════════════ */
+const DAYS=['Monday','Tuesday','Wednesday','Thursday','Friday'];
+
+function loadPlanner(){
+  const plan=ls('erph_plan_'+(currentUser?currentUser.email:'guest'),{});
+  const container=document.getElementById('plannerDays');
+  container.innerHTML=DAYS.map(d=>`
+    <div class="planner-day">
+      <h4>${d}</h4>
+      <textarea id="plan_${d}" placeholder="e.g. G11 Oral Comm — speech acts intro, CLT warm-up activity...">${plan[d]||''}</textarea>
+    </div>`).join('');
+}
+
+function savePlanner(){
+  const plan={};
+  DAYS.forEach(d=>{plan[d]=document.getElementById('plan_'+d).value;});
+  lss('erph_plan_'+(currentUser?currentUser.email:'guest'),plan);
+  closeModal('plannerModal');
+  showToast('Lesson plan saved! 📅','gold');
+}
+
+function clearPlanner(){
+  DAYS.forEach(d=>{document.getElementById('plan_'+d).value='';});
+}
+
+/* auto-load planner fields when modal opens */
+document.getElementById('plannerModal').addEventListener('click',()=>{});
+// planner and reminders are handled in the patched openModal above
+
+/* ═══════════════ REMINDERS ═══════════════ */
+function getReminders(){return ls('erph_reminders_'+(currentUser?currentUser.email:'guest'),[]);}
+function saveRemindersData(r){lss('erph_reminders_'+(currentUser?currentUser.email:'guest'),r);}
+
+function loadReminders(){
+  const items=getReminders();
+  const list=document.getElementById('reminderList');
+  if(!items.length){list.innerHTML='<p style="font-size:.82rem;color:var(--muted);padding:.5rem 0;">No reminders yet. Add one above!</p>';return;}
+  list.innerHTML=items.map((item,i)=>`
+    <div class="reminder-item">
+      <input type="checkbox" class="reminder-cb" ${item.done?'checked':''} onchange="toggleReminder(${i})" id="rem${i}" aria-label="${item.text}">
+      <label for="rem${i}" class="reminder-text${item.done?' done':''}">${item.text}</label>
+      <button class="reminder-del" onclick="deleteReminder(${i})" aria-label="Delete reminder">🗑</button>
+    </div>`).join('');
+}
+
+function addReminder(){
+  const inp=document.getElementById('reminderInput');
+  const text=inp.value.trim();
+  if(!text)return;
+  const items=getReminders();
+  items.push({text,done:false});
+  saveRemindersData(items);
+  inp.value='';
+  loadReminders();
+  showToast('Reminder added! 🔔');
+}
+
+function toggleReminder(i){
+  const items=getReminders();
+  items[i].done=!items[i].done;
+  saveRemindersData(items);
+  loadReminders();
+}
+
+function deleteReminder(i){
+  const items=getReminders();
+  items.splice(i,1);
+  saveRemindersData(items);
+  loadReminders();
+}
+
+// enter key for reminders
+document.getElementById('reminderInput').addEventListener('keydown',e=>{if(e.key==='Enter')addReminder();});
+
+/* ═══════════════ PRINT ═══════════════ */
+function printResources(){
+  const q=document.getElementById('searchBox').value.toLowerCase();
+  const bm=getBookmarks();
+  const filtered=DATA.filter(r=>{
+    const matchType=curType==='ALL'||r.type===curType;
+    const matchQ=!q||[r.title,r.desc,r.subj,r.grade].join(' ').toLowerCase().includes(q);
+    const matchBm=!showBookmarks||bm.includes(r.id);
+    return matchType&&matchQ&&matchBm;
+  });
+  const rows=filtered.map(r=>`<tr><td>${TYPE_LABEL[r.type]}</td><td>${r.grade}</td><td><b>${r.title}</b><br><small>${r.desc}</small></td><td>${r.src}</td></tr>`).join('');
+  const win=window.open('','_blank');
+  win.document.write(`<!DOCTYPE html><html><head><title>EnglishReady PH — Resource List</title>
+  <style>body{font-family:sans-serif;padding:2rem;}h1{font-size:1.3rem;margin-bottom:1rem;}table{width:100%;border-collapse:collapse;font-size:.85rem;}th{background:#4a0f1c;color:white;padding:.5rem .7rem;text-align:left;}td{padding:.5rem .7rem;border-bottom:1px solid #eee;vertical-align:top;}@media print{.no-print{display:none;}}</style>
+  </head><body><h1>EnglishReady PH — Resource List</h1><p style="font-size:.8rem;color:#888;margin-bottom:1rem;">Printed: ${new Date().toLocaleDateString('en-PH')}</p>
+  <table><thead><tr><th>Type</th><th>Grade</th><th>Title</th><th>Source</th></tr></thead><tbody>${rows}</tbody></table></body></html>`);
+  win.document.close();
+  win.print();
+}
+
+/* ═══════════════ TOAST ═══════════════ */
+let toastTimer;
+function showToast(msg,type=''){
+  const t=document.getElementById('toast');
+  t.textContent=msg;
+  t.className='toast show'+(type?' '+type:'');
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(()=>{t.className='toast';},2800);
+}
+
+/* ═══════════════ PROFILE ═══════════════ */
+function getProfilePhoto(){return ls('erph_avatar_'+(currentUser?currentUser.email:''),null);}
+function saveProfilePhoto(data){lss('erph_avatar_'+(currentUser?currentUser.email:''),data);}
+
+function openProfileModal(){
+  if(!currentUser){openModal('signinOverlay');return;}
+  // Populate fields
+  document.getElementById('profileName').value=currentUser.name||'';
+  document.getElementById('profileSchool').value=currentUser.school||'';
+  document.getElementById('profileNameDisplay').textContent=currentUser.name||'Teacher';
+  document.getElementById('profileSchoolDisplay').textContent=currentUser.school||'No school set';
+  // Avatar
+  const photo=getProfilePhoto();
+  const avatarEl=document.getElementById('profileAvatarBig')||document.querySelector('.profile-avatar-big');
+  const initialsEl=document.getElementById('profileAvatarInitials');
+  if(photo){
+    initialsEl.innerHTML=`<img src="${photo}" alt="Profile photo" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">`;
+  } else {
+    const initials=currentUser.name.split(' ').map(w=>w[0]).slice(0,2).join('').toUpperCase();
+    initialsEl.textContent=initials;
+  }
+  // Stats
+  const bm=getBookmarks();
+  const notes=getNotes();
+  const reminders=getReminders();
+  document.getElementById('statBookmarks').textContent=bm.length;
+  document.getElementById('statNotes').textContent=Object.keys(notes).length;
+  document.getElementById('statReminders').textContent=reminders.length;
+  openModal('profileModal');
+}
+
+function handleAvatarUpload(e){
+  const file=e.target.files[0];
+  if(!file)return;
+  if(file.size>3*1024*1024){showToast('Image too large. Max 3MB.','');return;}
+  const reader=new FileReader();
+  reader.onload=function(ev){
+    const data=ev.target.result;
+    saveProfilePhoto(data);
+    // Update initials el to show image
+    document.getElementById('profileAvatarInitials').innerHTML=
+      `<img src="${data}" alt="Profile photo" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">`;
+    updateHeaderAvatar();
+    showToast('Photo updated! 📸','gold');
+  };
+  reader.readAsDataURL(file);
+}
+
+function saveProfile(){
+  if(!currentUser)return;
+  const name=document.getElementById('profileName').value.trim();
+  const school=document.getElementById('profileSchool').value.trim();
+  if(!name){showToast('Please enter your name.');return;}
+  // Update user in storage
+  const users=getUsers();
+  if(users[currentUser.email]){
+    users[currentUser.email].name=name;
+    users[currentUser.email].school=school;
+    saveUsers(users);
+  }
+  currentUser.name=name;
+  currentUser.school=school;
+  lss('erph_session',currentUser);
+  // Refresh displays
+  document.getElementById('profileNameDisplay').textContent=name;
+  document.getElementById('profileSchoolDisplay').textContent=school||'No school set';
+  updateAuthUI();
+  showToast('Profile saved! ✅','gold');
+}
+
+function updateHeaderAvatar(){
+  if(!currentUser)return;
+  const photo=getProfilePhoto();
+  const avatarEl=document.getElementById('userAvatar');
+  if(photo){
+    avatarEl.innerHTML=`<img src="${photo}" alt="Profile photo" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">`;
+    avatarEl.style.background='transparent';
+  } else {
+    const initials=currentUser.name.split(' ').map(w=>w[0]).slice(0,2).join('').toUpperCase();
+    avatarEl.textContent=initials;
+    avatarEl.style.background='';
+  }
+}
+
+/* patch openModal to load profile when opened */
+const _origOpenModalProfile=openModal;
+window.openModal=function(id){
+  _origOpenModalProfile(id);
+  if(id==='plannerModal')loadPlanner();
+  if(id==='remindersModal')loadReminders();
+};
+
+/* patch updateAuthUI to also sync header avatar photo */
+const _origUpdateAuthUI=updateAuthUI;
+window.updateAuthUI=function(){
+  _origUpdateAuthUI();
+  if(currentUser)updateHeaderAvatar();
+};
+
+/* ═══════════════ INIT ═══════════════ */
+render();
+updateAuthUI();
+</script>
+</body>
+</html>
